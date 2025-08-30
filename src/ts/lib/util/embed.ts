@@ -15,6 +15,7 @@ DOMAINS[I.EmbedProcessor.GithubGist] = [ 'gist.github.com' ];
 DOMAINS[I.EmbedProcessor.Sketchfab] = [ 'sketchfab.com' ];
 DOMAINS[I.EmbedProcessor.Drawio] = [ 'diagrams.net' ];
 DOMAINS[I.EmbedProcessor.Spotify] = [ 'spotify.com', 'open.spotify.com'];
+DOMAINS[I.EmbedProcessor.Excalidraw] = [ 'excalidraw.com' ];
 
 const IFRAME_PARAM = 'frameborder="0" scrolling="no" allowfullscreen';
 
@@ -128,6 +129,15 @@ class UtilEmbed {
 	 * @returns {string} The HTML iframe string.
 	 */
 	getBilibiliHtml (content: string): string {
+		return `<iframe src="${content}" ${IFRAME_PARAM}></iframe>`;
+	};
+
+	/**
+	 * Returns the HTML for embedding a ExcaliDraw editor.
+	 * @param {string} content - The ExcaliDraw URL
+	 * @returns {string} The HTML iframe string. 
+	 */
+	getExcaliDrawHtml (content: string): string {
 		return `<iframe src="${content}" ${IFRAME_PARAM}></iframe>`;
 	};
 
@@ -300,6 +310,11 @@ class UtilEmbed {
 				break;
 			};
 
+			case I.EmbedProcessor.Excalidraw: {
+				url = `https://www.excalidraw.com/`;
+				break;
+			};
+
 			case I.EmbedProcessor.Sketchfab: {
 				const a = url.split('/');
 				if (!a.length) {
@@ -440,6 +455,7 @@ class UtilEmbed {
 			I.EmbedProcessor.Vimeo,
 			I.EmbedProcessor.Bilibili,
 			I.EmbedProcessor.Spotify,
+			I.EmbedProcessor.Excalidraw,
 		].includes(p);
 	};
 
@@ -492,6 +508,7 @@ class UtilEmbed {
 			I.EmbedProcessor.Chart,
 			I.EmbedProcessor.Image,
 			I.EmbedProcessor.Spotify,
+			I.EmbedProcessor.Excalidraw,
 		].includes(p);
 	};
 
@@ -511,6 +528,7 @@ class UtilEmbed {
 			I.EmbedProcessor.Kroki,
 			I.EmbedProcessor.Drawio,
 			I.EmbedProcessor.Image,
+			I.EmbedProcessor.Excalidraw,
 		].includes(p);
 	};
 
@@ -535,6 +553,7 @@ class UtilEmbed {
 			I.EmbedProcessor.Kroki,
 			I.EmbedProcessor.Chart,
 			I.EmbedProcessor.Drawio,
+			I.EmbedProcessor.Excalidraw,
 			I.EmbedProcessor.Spotify,
 		].includes(p);
 	};
